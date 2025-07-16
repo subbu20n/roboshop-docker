@@ -9,6 +9,7 @@
 # CMD ["java","-jar","shipping.jar"]    
 
 FROM maven 
+WORKDIR /opt/server 
 COPY pom.xml . 
-COPY src .
+COPY src /opt/server/src 
 CMD ["sleep","1000"]
