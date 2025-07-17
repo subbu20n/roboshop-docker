@@ -43,7 +43,7 @@ services:
       RABBITMQ_DEFAULT_USER: roboshop 
       RABBITMQ_DEFAULT_PASS: roboshop123             
   payment: 
-    image: python:3.9 
+    image: subbu2/payment:v1
     container_name: payment
     environment: 
       CART_HOST: cart 
