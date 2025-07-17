@@ -26,7 +26,7 @@ services:
     container_name: cart 
     depends_on: 
     - catalogue 
-    - cart  
+    - redis  
   mysql:
     image: subbu2/mysql:v1 
     container_name: mysql 
