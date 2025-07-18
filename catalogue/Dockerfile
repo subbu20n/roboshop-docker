@@ -3,9 +3,9 @@ RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 WORKDIR /opt/server 
 COPY package.json . 
 COPY *.js . 
+USER roboshop 
 RUN npm install 
 RUN chown -R roboshop:roboshop /opt/server 
 ENV MONGO="true" \ 
-    MONGO_URL="mongodb://mongodb:27017/catalogue" 
-USER roboshop     
+    MONGO_URL="mongodb://mongodb:27017/catalogue"     
 CMD ["node","server.js"]    
