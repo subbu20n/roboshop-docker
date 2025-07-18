@@ -4,7 +4,7 @@ WORKDIR /opt/server
 COPY package.json . 
 COPY *.js . 
 RUN npm install 
-RUN chown -R robosho:robosho /opt/server 
+RUN chown -R roboshop:roboshop /opt/server 
 ENV MONGO="true" \ 
     MONGO_URL="mongodb://mongodb:27017/catalogue" 
 USER roboshop     
