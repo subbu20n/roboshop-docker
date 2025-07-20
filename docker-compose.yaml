@@ -1,83 +1,84 @@
 networks:
-   default: 
-     driver: bridge 
-     name: roboshop 
-     external: true # i crated already network docker network create roboshop 
+  default:
+    driver: bridge
+    name: roboshop
+    #external: true #I created network already using docker network create roboshop
 volumes:
-   mongodb: 
-   redis:
-   mysql:
-   rabbitmq: # docker volume create rabbitmq      
-services: 
   mongodb:
-     image: subbu2/mongodb:v1 
-     container_name: mongodb 
-     volumes: 
-     - mongodb:/data/db 
-  catalogue: 
-     image: subbu2/catalogue:v1 
-     container_name:  catalogue 
-     depends_on: 
-     - mongodb 
   redis:
-     image: redis:7.0 
-     container_name: redis 
-     volumes:
-     - redis:/data 
-  user: 
-     image: subbu2/user:v1 
-     container_name: user 
-     depends_on: 
-     - redis 
-     - mongodb 
-  cart: 
-     image: subbu2/cart:v1 
-     container_name: cart 
-     depends_on:
-     - catalogue 
-     - redis 
   mysql:
-     image: subbu2/mysql:v1 
-     container_name: mysql
-     volumes:
-     - mysql:/var/lib/mysql  
-  shipping: 
-     image: subbu2/shipping:v1 
-     container_name: shipping 
-     depends_on: 
-     - mysql 
-     - cart  
+  rabbitmq: # docker volume create rabbitmq
+services:
+  mongodb:
+    image: subbu2/mongodb:v1
+    container_name: mongodb
+    volumes:
+    - mongodb:/data/db
+  catalogue:
+    image: subbu2/catalogue:v1
+    container_name: catalogue
+    depends_on:
+    - mongodb
+  redis:
+    image: redis:7.0
+    container_name: redis
+    volumes:
+    - redis:/data
+  user:
+    image: subbu2/user:v1
+    container_name: user
+    depends_on:
+    - redis
+    - mongodb
+  cart:
+    image: subbu2/cart:v1
+    container_name: cart
+    depends_on:
+    - catalogue
+    - redis
+  mysql:
+    image: subbu2/mysql:v1
+    container_name: mysql
+    volumes:
+    - mysql:/var/lib/mysql
+  shipping:
+    image: subbu2/shipping:v1
+    container_name: shipping
+    depends_on:
+    - mysql
+    - cart
   rabbitmq:
-     image: rabbitmq:3 
-     container_name: rabbitmq 
-     environment:
-       RABBITMQ_DEFAULT_USER: roboshop 
-       RABBITMQ_DEFAULT_PASS: roboshop123 
-     volumes: 
-     - rabbitmq:/var/lib/rabbitmq   
+    image: rabbitmq:3
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: roboshop
+      RABBITMQ_DEFAULT_PASS: roboshop123
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq
   payment:
-     image: subbu2/payment:v1 
-     container_name: payment 
-     environment: 
-      CART_HOST: cart 
+    image: subbu2/payment:v1
+    container_name: payment
+    environment:
+      CART_HOST: cart
       CART_PORT: 8080
-      USER_HOST: user 
-      USER_PORT: 8080 
-      AMQP_HOST: rabbitmq 
-      AMQP_USER: roboshop 
-      AMQP_PASS: roboshop123 
-     depends_on: 
-     - cart 
-     - user 
-     - rabbitmq 
+      USER_HOST: user
+      USER_PORT: 8080
+      AMQP_HOST: rabbitmq
+      AMQP_USER: roboshop
+      AMQP_PASS: roboshop123
+    depends_on:
+    - rabbitmq
+    - cart
+    - user
   frontend:
-     image: subbu2/frontend:v1 
-     container_name: frontend 
-     ports: 
-     - "80:80" 
-     depends_on:
-     - catalogue 
-     - user 
-     - cart 
-     - shipping 
-     - payment      
+    image: subbu2/frontend:v1
+    container_name: frontend
+    ports:
+    - "80:80"
+    depends_on:
+    - catalogue
+    - user
+    - cart
+    - shipping
+    - payment
+      
