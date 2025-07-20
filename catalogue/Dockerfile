@@ -9,7 +9,7 @@ RUN addgroup -S roboshop
 RUN adduser -S roboshop -G roboshop 
 ENV MONGO="true" 
 ENV MONGO_URL="mongodb://mongodb:27017/catalogue" 
-RUN chown -R roboshop:roboshop /opt/server 
+WORKDIR /opt/server
 USER roboshop 
 COPY --from=builder /opt/server /opt/server 
 CMD ["node","server.js"]
