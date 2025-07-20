@@ -2,6 +2,6 @@ FROM python:3.9
 WORKDIR /opt/server 
 COPY requirements.txt  .
 COPY *.py .
-COPY payment.ini  
+COPY payment.ini  . 
 RUN pip3 -r install requirements.txt 
 CMD ["uwsgi","--ini","payment.ini"]
