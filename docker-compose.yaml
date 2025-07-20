@@ -2,7 +2,7 @@ networks:
    default: 
      driver: bridge 
      name: roboshop 
-     #externel: ture # i crated already network docker network create roboshop 
+     externel: ture # i crated already network docker network create roboshop 
 services: 
   mongodb:
      image: subbu2/mongodb:v1 
@@ -42,4 +42,3 @@ services:
      environment:
        RABBITMQ_DEFAULT_USER: roboshop 
        RABBITMQ_DEFAULT_PASS: roboshop123 
-          
