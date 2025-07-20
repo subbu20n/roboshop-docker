@@ -15,5 +15,5 @@ ENV MONGO="true" \
     MONGO_URL="mongodb://mongodb:27017/users" 
 COPY package.json .
 COPY *.js .
-RUN npm install     
+RUN npm install 
 CMD ["node","server.js"]
