@@ -2,7 +2,7 @@ networks:
    default: 
      driver: bridge 
      name: roboshop 
-     external: ture # i crated already network docker network create roboshop 
+     external: true # i crated already network docker network create roboshop 
 services: 
   mongodb:
      image: subbu2/mongodb:v1 
