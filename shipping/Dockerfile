@@ -4,7 +4,7 @@ COPY pom.xml .
 COPY src /opt/server/src 
 RUN mvn clean package 
 
-FROM eclipse-tEmurin:17-jre-alpine
+FROM eclipse-temurin:17-jre-alpine
 EXPOSE 8080 
 WORKDIR /opt/server 
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
