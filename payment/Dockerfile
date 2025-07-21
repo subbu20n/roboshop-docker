@@ -2,7 +2,7 @@ FROM python:3.9 AS builder
 WORKDIR /opt/server 
 COPY requirements.txt .
 COPY payment.ini .
-COPY *.PY .
+COPY *.py .
 RUN pip3 install -r requirements.txt 
 
 FROM python:3.9.23-alpine3.22 
