@@ -1,7 +1,7 @@
 FROM python:3.9.23-alpine3.22 
 WORKDIR /opt/server 
 EXPOSE 8080 
-COPY requirements.ini  . 
+COPY requirements.txt  . 
 COPY payment.ini .
 COPY *.py . 
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop \
