@@ -11,6 +11,7 @@ ENV MONGO="true"
 ENV MONGO_URL="mongodb://mongodb:27017/catalogue" 
 WORKDIR /opt/server 
 COPY --from=builder /opt/server /opt/server 
+USER roboshop 
 CMD ["node","server.js"]
 
 
