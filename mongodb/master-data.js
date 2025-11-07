@@ -17,10 +17,10 @@ db.products.insertMany([
 ]);
 
 // full text index for searching
-db.products.createIndex({
-    name: "text",
+db.products.createIndex({ 
+    name: "text", 
     description: "text"
-});
+}); 
 
 // unique index for product sku
 db.products.createIndex(
