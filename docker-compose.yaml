@@ -1,3 +1,8 @@
+volumes: 
+   mongodb:
+   redis: 
+   mysql:
+   rabbitmq: # docker volume create mongodb this is equivalent to this 
 networks: 
    default: 
      driver: bridge 
@@ -6,7 +11,9 @@ networks:
 services: 
    mongodb: 
       image: subbu2/mongodb:v1
-      container_name: mongodb 
+      container_name: mongodb  
+      volumes: 
+      - mongodb:/data/db 
    catalogue: 
       image: subbu2/catalogue:v1 
       container_name: catalogue 
@@ -15,6 +22,8 @@ services:
    redis: 
       image: redis:7.0 
       container_name: redis 
+      volumes:
+      - redis:/data
    user: 
       image: subbu2/user:v1 
       container_name: user 
@@ -30,6 +39,8 @@ services:
    mysql: 
       image: subbu2/mysql:v1 
       container_name: mysql 
+      volumes:
+      - mysql:/var/lib/mysql 
    shipping: 
       image: subbu2/shipping:v1 
       container_name: shipping 
@@ -42,6 +53,8 @@ services:
       environment: 
          RABBITMQ_DEFAULT_USER: roboshop 
          RABBITMQ_DEFAULT_PASS: roboshop@123 
+      volumes: 
+      - rabbitmq:/var/lib/rabbitmq    
    payment: 
       image: subbu2/payment:v1 
       container_name: payment 
