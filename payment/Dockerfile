@@ -12,6 +12,7 @@ WORKDIR /opt/server
 COPY requirements.txt .
 COPY *.py . 
 COPY payment.ini . 
+RUN apk add --no-cache gcc musl-dev linux-headers
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 FROM python:3.9.23-alpine3.22 
