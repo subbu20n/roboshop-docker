@@ -25,6 +25,6 @@ COPY --from=builder /usr/local/bin/uwsgi /usr/local/bin/uwsgi
 
 # Copy application code
 COPY --from=builder /opt/server /opt/server
-
+RUN chown -R roboshop:roboshop /opt/server 
 USER roboshop
 CMD ["uwsgi", "--ini", "payment.ini"]
