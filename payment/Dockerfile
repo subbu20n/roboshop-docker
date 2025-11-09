@@ -12,7 +12,7 @@ WORKDIR /opt/server
 COPY requirements.txt .
 COPY *.py . 
 COPY payment.ini . 
-RUN pip3.9 install --no-cache-dir -r requirements.txt 
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 FROM python:3.9.23-alpine3.22 
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop 
