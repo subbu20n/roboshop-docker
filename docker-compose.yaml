@@ -1,8 +1,9 @@
-# volumes: 
-#    mongodb:
-#    redis: 
-#    mysql:
-#    rabbitmq: # docker volume create mongodb this is equivalent to this 
+volumes: 
+   mongodb: 
+   redis: 
+   mysql:
+   rabbitmq: # docker volume create mongodb this is equivalent to this 
+
 networks: 
    default: 
      driver: bridge 
