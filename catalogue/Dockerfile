@@ -44,3 +44,5 @@ ENV MONGO="true" \
 WORKDIR /opt/server 
 COPY --from=builder  /opt/server /opt/server 
 CMD ["node","server.js"]    
+
+
