@@ -9,5 +9,5 @@ else
 fi
 # Making it as available in env
 export MYSQL_ROOT_PASSWORD=$PASSWORD
-rm -rf /tmp/mysql_root_password.txt
+rm -rf /tmp/mysql_root_password.txt #after reading/setting the env variable the mysql_root_password we deleting it ok  
 exec  /usr/local/bin/docker-entrypoint.sh mysqld    
